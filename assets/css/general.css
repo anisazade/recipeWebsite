@@ -1,0 +1,17 @@
+main{
+    flex: 1;
+}
+footer{
+    background-color: gainsboro;
+}
+header{
+    display: flex;
+    flex-direction: column;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 15px;
+}
+

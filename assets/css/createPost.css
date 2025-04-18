@@ -1,0 +1,100 @@
+/* 
+to fix:
+- set the css on changing the text color of placeholder using JS. 
+*/
+
+#create-post{
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#post-title{
+    height: 50px;
+    width: 90%;
+    font-size: 35px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    outline: none;
+    margin: 10px 0px; 
+}
+
+#editor{
+    outline: none;
+    min-height: 80vh;
+}
+
+#toolbar{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 5px;
+    position: absolute;
+    /* bottom: 30px;
+    left: 50%; */
+    right: 10px;
+    top: 10px;
+    /* transform: translate(-50%); */
+    padding: 5px 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+.toolBtn{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    height: 28px;
+    width: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 2px;
+}
+
+[data-placeholder-state="on"]{
+    color: rgb(109, 109, 109);
+}
+
+#recipe-maker{
+    border: 1px solid black;
+    padding: 15px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* #editor img {
+    max-width: 100%;
+    height: auto;
+    resize: both;
+    overflow: auto;
+    display: block;
+} */
+
+.del-btn{
+    opacity: 0.5;
+    border: none;
+    background-color: white;
+    font-size: 13px;
+}
+.del-btn:hover{
+    opacity: 1;
+}
+.item-input{
+    border: none;
+    outline: none;
+    width: 20ch;
+}
+
+.instruction-input{
+    width: 55ch;
+}
+.costume-ingredient-unit{
+    width: 10ch;
+}
+.ingredient-size{
+    width: 10ch;
+}
+

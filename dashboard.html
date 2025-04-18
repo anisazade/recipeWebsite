@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/createPost.css">
+        <link rel="stylesheet" href="assets/css/general.css">
+        <link rel="stylesheet" href="assets/css/recipe.css">
+        <script src="assets/js/placeHolder.js" defer></script>
+        <script src="assets/js/formatText.js" defer></script>
+        <script src="assets/js/insertImg.js" defer></script>
+        <script src="assets/js/recipeMaker.js" defer></script>
+
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <div id="create-post">
+            <input type="text" name="" id="post-title" placeholder="Post Title">
+            <div id="editor" contenteditable="true" data-placeholder-state="on"></div>
+            <div id="toolbar">
+                <button class="toolBtn" onclick="formatText('b')"><b>B</b></button>
+                <button class="toolBtn" onclick="formatText('i')"><i>I</i></button>
+                <button class="toolBtn" onclick="formatText('u')"><u>U</u></button>
+                <button class="toolBtn">&#x2022;</button>
+                <button class="toolBtn" onclick="insertImage()">img</button>
+            </div>
+            <label>
+                <input type="checkbox" id="includeRecipe">
+                Include a Recipe
+            </label>
+            <div id="recipe-maker">
+                Ingredients:
+                <div id="ingredient">
+                    <ul id="ingredient-list" class="no-bullet">
+                        <li>
+                            <button class="del-btn" >×</button>
+                            <input name="ingredient" type="text" placeholder="Item" maxlength="20"
+                                class="item-input">
+                            <input type="text" name="size" placeholder="size" maxlength="8" 
+                                class="ingredient-size">
+                            <select name="unit" class="ingredient-unit">
+                                <option value="">g</option>
+                                <option value="">kg</option>
+                                <option value="">ml</option>
+                                <option value="">l</option>
+                                <option value="">tsp</option>
+                                <option value="">tbsp</option>
+                                <option value="">cup</option>
+                                <option value="">oz</option>
+                                <option value="">none</option>
+                                <option value="costume">&lt;costume measurment&gt;</option>
+                            </select>
+                        </li>
+                        <button id="add-item">&#43;</button>
+                    </ul>
+                </div>
+                Instructions:
+                <div id="instructions">
+                    <ol id="instruction-list">
+                        <li>
+                            <input type="text" placeholder="Add salt and pepper..." class="instruction-input" 
+                            maxlength="50" >
+                            <button class="del-btn" >×</button>
+                        </li>
+                        <button id="add-instruction">&#43;</button>
+                    </ol>
+                </div>
+            </div>
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        </div>
+    </body>
+</html>

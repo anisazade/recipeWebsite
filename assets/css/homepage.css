@@ -1,0 +1,44 @@
+.slider{
+    position: relative;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 7px;
+    margin: 0px 5px;
+    height: 30px;
+}
+
+.slide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 7px;
+    margin: 0px 5px;
+    visibility: hidden;
+    height: 100%;
+}
+.current-slide{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+}
+.next-btn{
+    position: absolute;
+    right: 0;
+}
+.previous-btn{
+    position: absolute;
+    left: 0;
+}

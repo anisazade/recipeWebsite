@@ -1,0 +1,19 @@
+#post, #recipe{
+    border: 1px solid black;
+    padding: 20px;
+}
+#recipe{
+    margin: 10px;
+}
+.no-bullet{
+    list-style-type: none;
+}
+
+ul{
+    padding: 0px 20px;
+}
+
+ul.li{
+    display: flex;
+    flex-direction: row;
+}
