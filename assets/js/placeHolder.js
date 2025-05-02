@@ -1,17 +1,17 @@
-/*
-to improve:
-- (implemented) can you replace the span element? 
-- turn this into an IIFE
-- add the css rule using js
-(possible) bugs:
-- with only images inserted, the placeholder won't go off (?)
-- (FIXED) cant select using poniter. 
-- (FIXED) arrowkeys handler
+/* TODO 
+- Turn this into a module
+*/
+
+/* FIXME
+- With only images inserted, the placeholder won't go off
 */
 
 const editor = document.getElementById("editor");
-const placeholder_text = "Type here...";
+const placeholder_text = editor.getAttribute("data-placeholder");
 editor.textContent = placeholder_text;
+const style = document.createElement("style");
+style.textContent = '[data-placeholder-state="on"]{color: rgb(109, 109, 109);}';
+document.head.appendChild(style);
 
 editor.addEventListener("keydown", (event)=>{
     const placeholder_status = event.target.getAttribute("data-placeholder-state") === "on";
@@ -57,7 +57,7 @@ editor.addEventListener(("pointerdown"), (event)=>{
 });
 
 function addPhIfEmpty(element){
-    if (element.innerText=="\n"){
+    if (element.innerText=="\n" || element.innerText=="" ){
         element.setAttribute("data-placeholder-state", "on");
         element.textContent = placeholder_text;
     }
@@ -72,4 +72,9 @@ function moveCursorToStart(element) {
 
     selection.removeAllRanges();
     selection.addRange(range);
+}
+
+function clearText(){
+    editor.textContent = "";
+    setTimeout(()=>{addPhIfEmpty(editor)},0);
 }

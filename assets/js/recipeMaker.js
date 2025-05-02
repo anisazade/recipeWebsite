@@ -1,3 +1,8 @@
+/* FIXME
+    - define eventlistener functions separately (so you dont have to call the events manually)
+    ** Triggering an event on buttons has side effects **
+*/
+
 // ------------- Recipe form Toggle ------------------
 document.getElementById("includeRecipe").addEventListener("change", (event)=> {
     const recipeSection = document.getElementById("recipe-maker");
@@ -32,7 +37,6 @@ add_item_btn.addEventListener("click", (event)=>{
         event.target.parentElement.remove()
     });
     list.insertBefore( new_item, event.target );
-
 });
 
 // because i didnt want to manually add the eventlisteners of the first li in script
@@ -55,3 +59,10 @@ add_instruction_btn.addEventListener("click", (event)=>{
 
 instruction_node.remove();
 add_instruction_btn.dispatchEvent(new Event("click"));
+
+function clearRecipe(){
+    document.getElementById("ingredient-list").querySelectorAll("li").forEach(li=>li.remove());
+    document.getElementById("instruction-list").querySelectorAll("li").forEach(li=>li.remove());
+    add_item_btn.dispatchEvent(new Event("click"));   
+    add_instruction_btn.dispatchEvent(new Event("click"));
+}
