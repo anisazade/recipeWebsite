@@ -10,13 +10,15 @@
         <script src="assets/js/formatText.js" defer></script>
         <script src="assets/js/insertImg.js" defer></script>
         <script src="assets/js/recipeMaker.js" defer></script>
+        <script src="assets/js/newPostModal.js" defer></script>
 
         <title>Dashboard</title>
     </head>
     <body>
         <div id="create-post">
-            <input type="text" name="" id="post-title" placeholder="Post Title">
-            <div id="editor" contenteditable="true" data-placeholder-state="on"></div>
+            <button class="close-btn">×</button>
+            <input type="text" name="" id="post-title-input" placeholder="Post Title">
+            <div id="editor" contenteditable="true" data-placeholder="Type here..." data-placeholder-state="on"></div>
             <div id="toolbar">
                 <button class="toolBtn" onclick="formatText('b')"><b>B</b></button>
                 <button class="toolBtn" onclick="formatText('i')"><i>I</i></button>
@@ -36,7 +38,7 @@
                             <button class="del-btn" >×</button>
                             <input name="ingredient" type="text" placeholder="Item" maxlength="20"
                                 class="item-input">
-                            <input type="text" name="size" placeholder="size" maxlength="8" 
+                            <input type="text" name="size" placeholder="size" maxlength="8"
                                 class="ingredient-size">
                             <select name="unit" class="ingredient-unit">
                                 <option value="">g</option>
@@ -58,8 +60,8 @@
                 <div id="instructions">
                     <ol id="instruction-list">
                         <li>
-                            <input type="text" placeholder="Add salt and pepper..." class="instruction-input" 
-                            maxlength="50" >
+                            <input type="text" placeholder="Add salt and pepper..." 
+                            class="instruction-input" maxlength="50" >
                             <button class="del-btn" >×</button>
                         </li>
                         <button id="add-instruction">&#43;</button>
@@ -67,6 +69,10 @@
                 </div>
             </div>
             <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+            <div id="post-btns">
+                <button id="post-btn">Post</button>
+                <button id="discard-btn">Discard</button>
+            </div>
         </div>
     </body>
 </html>
