@@ -1,5 +1,4 @@
-/*
-bugs:
+/* FIXME
 - can't resize image
 - can't insert when placeholder is on 
 */

@@ -1,4 +1,4 @@
-/*
+/* FIXME
 bugs:
 - (SOLVED) can't undo
 - (SOLVED) can't apply multiple formats at once (must select and apply separately)
@@ -37,9 +37,7 @@ function formatText(format){
         }
         range.deleteContents();
 
-        range.insertNode(newElement);
-        // range.setStart(newElement, 0); // Move the cursor inside
-        // range.setEnd(newElement, 0);        
+        range.insertNode(newElement);       
 
     }
 }
