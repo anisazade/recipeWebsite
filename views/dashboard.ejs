@@ -3,18 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assets/css/createPost.css">
-        <link rel="stylesheet" href="assets/css/general.css">
-        <link rel="stylesheet" href="assets/css/recipe.css">
-        <script src="assets/js/placeHolder.js" defer></script>
-        <script src="assets/js/formatText.js" defer></script>
-        <script src="assets/js/insertImg.js" defer></script>
-        <script src="assets/js/recipeMaker.js" defer></script>
-        <script src="assets/js/createPostModal.js" defer></script>
+        <link rel="stylesheet" href="/css/createPost.css">
+        <link rel="stylesheet" href="/css/general.css">
+        <link rel="stylesheet" href="/css/recipe.css">
+        <link rel="stylesheet" href="/css/header.css">
 
+        <script src="/js/placeHolder.js" defer></script>
+        <script src="/js/formatText.js" defer></script>
+        <script src="/js/insertImg.js" defer></script>
+        <script src="/js/recipeMaker.js" defer></script>
+        <script src="/js/createPostModal.js" defer></script>
         <title>Dashboard</title>
     </head>
     <body>
+        <%- include("./components/header") %>
         <div id="create-post">
             <button class="close-btn">×</button>
             <input type="text" name="" id="post-title-input" placeholder="Post Title">
@@ -74,5 +76,6 @@
                 <button id="discard-btn">Discard</button>
             </div>
         </div>
+        <%- include("./components/footer") %>
     </body>
 </html>

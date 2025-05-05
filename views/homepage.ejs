@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/general.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/homepage.css">
+        <script src="/js/dropdown.js" defer></script>
+        <script src="/js/slide.js" defer></script>
+        <title>Home Page</title>
+    </head>
+
+    <body>
+        <%- include("./components/header") %>
+        <main>
+            <section>
+                <h3>Top Recipes</h3>
+                <div class="slideshow">
+                    <button class="previous-btn">&lt;</button>
+                    <div class="current-slide">                    
+                        <div class="slide" style="visibility: visible;">
+                                <div class="title">Chocolate Chip Cookies</div>
+                                <div class="info"></div>
+                        </div>
+                    </div>
+                    <button class="next-btn">&gt;</button>
+                    <div class="slide">
+                          <div class="title">Chicken Sandwitch</div>
+                          <div class="info"></div>
+                    </div>
+                    <div class="slide">
+                          <div class="title">Pasta Alfredo</div>
+                          <div class="info"></div>
+                    </div>
+                    <div class="slide">
+                          <div class="title">Sushi</div>
+                          <div class="info"></div>
+                    </div>
+                    <div class="slide">
+                          <div class="title">Crispy Fries</div>
+                          <div class="info"></div>
+                    </div>
+                    <div class="slide">
+                          <div class="title">Beef</div>
+                          <div class="info"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h3>Yummy Articls!</h3>
+                <div>
+                    <div class="card">Improve you chopping skills!</div>
+                    <div class="card">How to restore used oil</div>
+                    <div class="card">10 tips to keep your vegitables fresh</div>
+                    <div class="card">Italians invented pizza?</div>
+                </div>
+            </section>
+        </main>
+
+        <%- include("./components/footer") %>
+
+    </body>
+</html>

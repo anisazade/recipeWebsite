@@ -13,51 +13,50 @@ const style = document.createElement("style");
 style.textContent = '[data-placeholder-state="on"]{color: rgb(109, 109, 109);}';
 document.head.appendChild(style);
 
-editor.addEventListener("keydown", (event)=>{
+editor.addEventListener("keydown", (event) => {
     const placeholder_status = event.target.getAttribute("data-placeholder-state") === "on";
 
-    if(event.key.length === 1 || event.key.toLowerCase() === "enter"){
-        if(placeholder_status){
+    if (event.key.length === 1 || event.key.toLowerCase() === "enter") {
+        if (placeholder_status) {
             event.target.setAttribute("data-placeholder-state", "off");
             event.target.textContent = "";
         }
-    }
-    else if(event.key.toLowerCase() === "backspace" || event.key.toLowerCase()=== "delete"){
-        if (placeholder_status){
+    } else if (event.key.toLowerCase() === "backspace" || event.key.toLowerCase() === "delete") {
+        if (placeholder_status) {
             event.preventDefault();
+        } else {
+            setTimeout(() => {
+                addPhIfEmpty(event.target);
+            }, 0);
         }
-        else{
-            setTimeout(()=>{addPhIfEmpty(event.target)},0);
-        }
-    }
-    else if(placeholder_status && event.key.toLowerCase().startsWith("arrow")){
+    } else if (placeholder_status && event.key.toLowerCase().startsWith("arrow")) {
         event.preventDefault();
     }
 });
 
-editor.addEventListener("focus", (event)=>{
-    if(editor.getAttribute("data-placeholder-state") === "on"){
+editor.addEventListener("focus", (event) => {
+    if (editor.getAttribute("data-placeholder-state") === "on") {
         event.preventDefault();
         moveCursorToStart(event.target);
     }
 });
 
-editor.addEventListener("blur", (event)=>{
-    if(editor.getAttribute("data-placeholder-state") === "on"){
+editor.addEventListener("blur", (event) => {
+    if (editor.getAttribute("data-placeholder-state") === "on") {
         event.preventDefault();
         window.getSelection().removeAllRanges();
     }
 });
 
-editor.addEventListener(("pointerdown"), (event)=>{
-    if(editor.getAttribute("data-placeholder-state") === "on"){
+editor.addEventListener("pointerdown", (event) => {
+    if (editor.getAttribute("data-placeholder-state") === "on") {
         event.preventDefault();
         moveCursorToStart(event.target);
     }
 });
 
-function addPhIfEmpty(element){
-    if (element.innerText=="\n" || element.innerText=="" ){
+function addPhIfEmpty(element) {
+    if (element.innerText == "\n" || element.innerText == "") {
         element.setAttribute("data-placeholder-state", "on");
         element.textContent = placeholder_text;
     }
@@ -66,7 +65,7 @@ function addPhIfEmpty(element){
 function moveCursorToStart(element) {
     const range = document.createRange();
     const selection = window.getSelection();
-    
+
     range.setStart(element, 0);
     range.collapse(true);
 
@@ -74,7 +73,9 @@ function moveCursorToStart(element) {
     selection.addRange(range);
 }
 
-function clearText(){
+function clearText() {
     editor.textContent = "";
-    setTimeout(()=>{addPhIfEmpty(editor)},0);
+    setTimeout(() => {
+        addPhIfEmpty(editor);
+    }, 0);
 }
