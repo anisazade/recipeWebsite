@@ -2,18 +2,27 @@
 - import all related scripts here and only link this one to the html page.
 */
 
-const modal = document.getElementById("create-post").cloneNode(true);
-const close_btn = document.querySelector("#create-post .close-btn");
-const post_btn = document.querySelector("#create-post .post-btn");
-const discard_btn = document.querySelector("#create-post #discard-btn");
+document.querySelector("#create-post-modal form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("body", document.querySelector("#editor"));
+    fetch("/dashboard/newPost", {
+        method: "POST",
+        body: formData
+    }).then(response =>{
+        if (response.ok){
+            console.log("Post successflly created");
+        }
+    });
+});
 
-close_btn.addEventListener("click", (event) => {
+document.querySelector("#create-post-modal .close-btn").addEventListener("click", (event) => {
     event.target.parentElement.style.visibility = "hidden";
 });
 
 // This key clears all the user inputs and closes the modal
-discard_btn.addEventListener("click", (event) => {
-    document.getElementById("create-post").style.visibility = "hidden";
+document.querySelector("#create-post-modal .discard-btn").addEventListener("click", (event) => {
+    document.getElementById("create-post-modal").style.visibility = "hidden";
     clearText();
     clearRecipe();
     document.getElementById("post-title-input").value = "";

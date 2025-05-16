@@ -3,79 +3,100 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/createPost.css">
         <link rel="stylesheet" href="/css/general.css">
-        <link rel="stylesheet" href="/css/recipe.css">
         <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/createPost.css">
 
+        <script src="/js/addCover.js" defer></script>
         <script src="/js/placeHolder.js" defer></script>
-        <script src="/js/formatText.js" defer></script>
-        <script src="/js/insertImg.js" defer></script>
+        <!-- <script src="/js/formatText.js" defer></script> -->
+        <!-- <script src="/js/insertImg.js" defer></script> -->
         <script src="/js/recipeMaker.js" defer></script>
         <script src="/js/createPostModal.js" defer></script>
         <title>Dashboard</title>
     </head>
     <body>
-        <%- include("./components/header") %>
-        <div id="create-post">
+        <!-- <%- include("./components/header") %> -->
+        <div id="create-post-modal">
             <button class="close-btn">×</button>
-            <input type="text" name="" id="post-title-input" placeholder="Post Title">
-            <div id="editor" contenteditable="true" data-placeholder="Type here..." data-placeholder-state="on"></div>
-            <div id="toolbar">
-                <button class="toolBtn" onclick="formatText('b')"><b>B</b></button>
-                <button class="toolBtn" onclick="formatText('i')"><i>I</i></button>
-                <button class="toolBtn" onclick="formatText('u')"><u>U</u></button>
-                <button class="toolBtn">&#x2022;</button>
-                <button class="toolBtn" onclick="insertImage()">img</button>
-            </div>
-            <label>
-                <input type="checkbox" id="includeRecipe">
-                Include a Recipe
-            </label>
-            <div id="recipe-maker">
-                Ingredients:
-                <div id="ingredient">
-                    <ul id="ingredient-list" class="no-bullet">
-                        <li>
-                            <button class="del-btn" >×</button>
-                            <input name="ingredient" type="text" placeholder="Item" maxlength="20"
-                                class="item-input">
-                            <input type="text" name="size" placeholder="size" maxlength="8"
-                                class="ingredient-size">
-                            <select name="unit" class="ingredient-unit">
-                                <option value="">g</option>
-                                <option value="">kg</option>
-                                <option value="">ml</option>
-                                <option value="">l</option>
-                                <option value="">tsp</option>
-                                <option value="">tbsp</option>
-                                <option value="">cup</option>
-                                <option value="">oz</option>
-                                <option value="">none</option>
-                                <option value="costume">&lt;costume measurment&gt;</option>
-                            </select>
-                        </li>
-                        <button id="add-item">&#43;</button>
-                    </ul>
+            <form action="" enctype="multipart/form-data">
+                
+                <button id="add-cover" onclick="addCover()" type="button">Cover</button>
+                <input type="file" id="post-cover-input" name="cover" accept="image/*" style="display: none;">
+                <div id="post-cover">
+                    <img data-default-cover="on" 
+                        src="https://www.yegam.it/wp-content/uploads/2019/07/food-design.jpg" alt="">
+                    </img>
                 </div>
-                Instructions:
-                <div id="instructions">
-                    <ol id="instruction-list">
-                        <li>
-                            <input type="text" placeholder="Add salt and pepper..." 
-                            class="instruction-input" maxlength="50" >
-                            <button class="del-btn" >×</button>
-                        </li>
-                        <button id="add-instruction">&#43;</button>
-                    </ol>
+                
+                <input type="text" name="title" id="post-title-input" placeholder="Post Title">
+                <div id="editor" contenteditable="true" data-placeholder="Type here..."
+                    data-placeholder-state="on"></div>
+                <!-- <div id="toolbar">
+                    <button class="toolBtn" onclick="formatText('b')"><b>B</b></button>
+                    <button class="toolBtn" onclick="formatText('i')"><i>I</i></button>
+                    <button class="toolBtn" onclick="formatText('u')"><u>U</u></button>
+                    <button class="toolBtn">&#x2022;</button>
+                    <button class="toolBtn" onclick="insertImage()">img</button>
+                </div> -->
+                <label>
+                    <input name="hasRecipe" type="checkbox" id="includeRecipe">
+                    Include a Recipe
+                </label>
+                <div id="recipe-maker">
+                    <div id="time-estimation">
+                        <label for="cooking-time">Cooking Time:</label>
+                        <input type="number" name="cooking-time" id="cooking-time">
+                        <select name="time-unit" id="time-unit">
+                            <option value="m">minute</option>
+                            <option value="h">hour</option>
+                            <option value="d">day</option>
+                        </select>
+                    </div>
+                    <div id="ingredients">
+                        Ingredients:
+                        <ul id="ingredient-list">
+                            <li style="display: none;">
+                                <input name="ingredient[]" type="text" placeholder="Item" maxlength="20"
+                                    class="item-input">
+                                <input name="size[]" type="number" step="0.01"  placeholder="size" maxlength="8"
+                                    class="ingredient-size">
+                                <select name="unit[]" class="ingredient-unit">
+                                    <option value="g">g</option>
+                                    <option value="kg">kg</option>
+                                    <option value="ml">ml</option>
+                                    <option value="l">l</option>
+                                    <option value="tsp">tsp</option>
+                                    <option value="tbsp">tbsp</option>
+                                    <option value="cup">cup</option>
+                                    <option value="oz">oz</option>
+                                    <option value="none">none</option>
+                                    <option value="costume">&lt;costume measurment&gt;</option>
+                                </select>
+                                <button class="del-btn" type="button">×</button>
+                            </li>
+                            <button class="add-item" type="button">&#43;</button>
+                        </ul>
+                    </div>
+                    <div id="instructions">
+                        Instructions:
+                        <ol id="instruction-list">
+                            <li style="display: none;">
+                                <input name="instruction[]" type="text" placeholder="Add salt and pepper..."
+                                class="instruction-input" maxlength="50" >
+                                <button class="del-btn" type="button">×</button>
+                            </li>
+                            <button class="add-instruction" type="button">&#43;</button>
+                        </ol>
+                    </div>
                 </div>
-            </div>
-            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-            <div id="post-btns">
-                <button id="post-btn">Post</button>
-                <button id="discard-btn">Discard</button>
-            </div>
+                <!-- <input type="file" id="imageUpload" accept="image/*" style="display: none;"> -->
+                <div class="post-btns">
+                    <button class="post-btn" type="submit">Post</button>
+                    <button class="discard-btn" type="button">Discard</button>
+                </div>
+            </form>
         </div>
-        <%- include("./components/footer") %>
+        <!-- <%- include("./components/footer") %> -->
     </body>
 </html>

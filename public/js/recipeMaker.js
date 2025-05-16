@@ -4,21 +4,32 @@
 */
 
 // ------------- Recipe form Toggle ------------------
+
+const recipeMaker = document.getElementById("recipe-maker");
+
 document.getElementById("includeRecipe").addEventListener("change", (event) => {
-    const recipeSection = document.getElementById("recipe-maker");
     if (event.target.checked) {
-        recipeSection.style.opacity = "1";
-        recipeSection.style.pointerEvents = "auto";
+        recipeMaker.style.opacity = "1";
+        toggleElements(recipeMaker, (disabled = false));
     } else {
-        recipeSection.style.opacity = "0.4";
-        recipeSection.style.pointerEvents = "none";
+        recipeMaker.style.opacity = "0.4";
+        toggleElements(recipeMaker);
     }
 });
 
+function toggleElements(containor, disabled = true) {
+    containor.querySelectorAll("input, select, button").forEach((element) => {
+        element.disabled = disabled;
+    });
+}
+
 // ------------- Ingredient form ------------------
-const add_item_btn = document.querySelector("#add-item");
-const item_node = document.querySelector("#ingredient-list li");
+const item_node = document.querySelector("#ingredient-list li").cloneNode(true);
+const add_item_btn = document.querySelector(".add-item");
 const measurement_input = document.createElement("input");
+
+item_node.style.display = "";
+
 measurement_input.setAttribute("class", "costume-ingredient-unit");
 measurement_input.setAttribute("name", "unit");
 measurement_input.setAttribute("placeholder", "unit");
@@ -38,13 +49,10 @@ add_item_btn.addEventListener("click", (event) => {
     list.insertBefore(new_item, event.target);
 });
 
-// because i didnt want to manually add the eventlisteners of the first li in script
-item_node.remove();
-add_item_btn.dispatchEvent(new Event("click"));
-
 // ------------- Instruction form ------------------
-const add_instruction_btn = document.getElementById("add-instruction");
-const instruction_node = document.querySelector("#instruction-list li");
+const add_instruction_btn = document.querySelector(".add-instruction");
+const instruction_node = document.querySelector("#instruction-list li").cloneNode(true);
+instruction_node.style.display = "";
 
 add_instruction_btn.addEventListener("click", (event) => {
     const list = document.querySelector("#instruction-list");
@@ -54,9 +62,6 @@ add_instruction_btn.addEventListener("click", (event) => {
     });
     list.insertBefore(new_instruction, event.target);
 });
-
-instruction_node.remove();
-add_instruction_btn.dispatchEvent(new Event("click"));
 
 function clearRecipe() {
     document
@@ -70,3 +75,7 @@ function clearRecipe() {
     add_item_btn.dispatchEvent(new Event("click"));
     add_instruction_btn.dispatchEvent(new Event("click"));
 }
+
+add_item_btn.click();
+add_instruction_btn.click();
+toggleElements(recipeMaker);
